@@ -14,11 +14,3 @@ Membuat aplikasi seperti bit.ly atau s.id
 ## Petunjuk
 * folder backend untuk API
 * folder frontend untuk frontend
-
-## Anggota
-
-Muhammad Azril Fathoni | 5027211002
-
-Midyanisa Yuniar | 5027211025
-
-Andreas Timotius Parhorasan Sihombing
