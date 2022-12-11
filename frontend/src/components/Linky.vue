@@ -21,12 +21,15 @@
         {{ linky.alias }}
       </h3>
       <div class="flex items-center flex justify-center">
-        <router-link class="w-96 flex justify-center rounded-3xl bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 
+        <router-link @click="app.increment(linky)" class="w-96 flex justify-center rounded-3xl bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 
  p-5 my-2 lg:my-4 lg:mx-4 shadow-sm  hover:shadow-md hover:border-purple-600 text-white" :to="'/' + linky.code" target="_blank">
           {{ currentHost }}/{{ linky.code }}</router-link>
         <!-- Copy Button -->
 
       </div>
+      <button
+          class="w-20 bg-gradient-to-r from-red-600 to-red-400 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded"
+    >{{linky.hitung}}</button>
 
       <div v-if="linky.editState">
           <br>
@@ -53,8 +56,6 @@
               @click="linky.editState = !linky.editState">Cancel</button>
           </form>
         </div>
-
-        
     </div>
   </div>
 </template>
