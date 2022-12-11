@@ -1,7 +1,7 @@
-import { db, auth }  from "../config/firebase.js";
+import { db, auth, }  from "../config/firebase.js";
 import { signOut } from "firebase/auth";
 import { defineStore } from "pinia";
-import { collection, onSnapshot, } from "firebase/firestore";
+import { collection, onSnapshot, doc, updateDoc, increment} from "firebase/firestore";
 import Swal from "sweetalert2";
 import axios from "axios";
 
@@ -125,6 +125,7 @@ export const useApp = defineStore({
         url: links.url,
         code: links.code,
         editState: false,
+        hitung: 0
       })
       .then((result) => {
         console.log(result);
@@ -159,15 +160,15 @@ export const useApp = defineStore({
       const id = linky.id 
       console.log(linky.id)
           await axios.patch(URL_API + "linky/" + id, edit)
-      .then((result) => {
-        console.log(result);
-        // Reset form
-        this.resetForm();
-        // Refresh link list
-        this.refreshList();
-      }).catch((error) => {
-        console.log(error);
-      });
+          .then((result) => {
+            console.log(result);
+            // Reset form
+            this.resetForm();
+            // Refresh link list
+            this.refreshList();
+          }).catch((error) => {
+            console.log(error);
+          });
 
 },
     resetForm() {
@@ -177,6 +178,15 @@ export const useApp = defineStore({
       this.input.edit.url = '';
       this.input.edit.alias = '';
       this.input.edit.code = '';
+    },
+      async increment(linky){
+        
+        const linkis = doc(db, "urls", linky.id);
+
+// Atomically increment the population of the city by 50.
+await updateDoc(linkis, {
+    'hitung' : increment(1)
+});
     },
     redirect(){
       db.collection('urls').where('code', '==', this.$route.params.code).onSnapshot((linky) => {
@@ -188,6 +198,7 @@ export const useApp = defineStore({
     })
     },
     async refreshList() {
+      this.resetForm();
       onSnapshot(collection(db, "urls"), (querySnapshot) => {
         this.linkys = [];
         querySnapshot.forEach((doc) => {
