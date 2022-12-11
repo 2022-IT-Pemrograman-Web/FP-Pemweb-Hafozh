@@ -169,6 +169,20 @@ app.get("/dashboard", (req, res) => {
 
 app.patch('/linky/:id', (req, res) => {
     try {
+        const linkis = doc(db, "urls", req.params.id);
+         updateDoc(linkis, {
+         'hitung' : increment(1)
+  });
+    } catch (error) {
+      res.send({
+        status: false,
+        message: "Failed to update link",
+      });
+    }
+  });
+
+app.patch('/linky/:id', (req, res) => {
+    try {
       db.collection("urls")
         .doc(req.params.id)
         .update({
