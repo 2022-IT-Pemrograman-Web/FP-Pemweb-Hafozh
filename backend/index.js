@@ -165,28 +165,26 @@ app.get("/dashboard", (req, res) => {
     }
 });
 
-// app.post('/linky/:id', (req, res) => {
-//     const { alias, url, code } = req.body;
-//     try {
-//       db.collection("urls")
-//         .doc(req.params.id)
-//         .update({
-//           alias: alias,
-//           url: url,
-//           code: code,
-//           editState: false,
-//         })
-//         .then(() => {
-//             res.send( alias, url, code);
-//       console.log(req.body)
-//         })
-//     } catch (error) {
-//       res.send({
-//         status: false,
-//         message: "Failed to update link",
-//       });
-//     }
-//   });
+app.patch('/linky/:id', (req, res) => {
+    try {
+      db.collection("urls")
+        .doc(req.params.id)
+        .update({
+          alias: req.body.alias,
+          url: req.body.url,
+          code: req.body.code,
+          editState: false,
+        })
+        .then(() => {
+      console.log("aman")
+        })
+    } catch (error) {
+      res.send({
+        status: false,
+        message: "Failed to update link",
+      });
+    }
+  });
 
 app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`);
