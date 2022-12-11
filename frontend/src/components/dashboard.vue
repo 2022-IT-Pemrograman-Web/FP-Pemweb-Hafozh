@@ -1,5 +1,5 @@
 <template>
-<div class="h-full backdrop-blur-3xl">
+<div class="h-full backdrop-blur-3xl  from-gray-800  to-cyan-800  bg-gradient-to-r">
   <div class="blur-lg"></div> <nav id="home" class="bg-gray-800 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-900">
     <div class="container flex flex-wrap items-center justify-between mx-auto">
       <div class="flex md:order-2">
@@ -33,7 +33,8 @@
   </nav>
   <!-- Shorten -->
   <div
-    class="rounded-lg bg-gray-900 w-full items-center lg:w-3/12 m-auto xl:p-10 lg:p-8 relative flex justify-center  lg:flex-row hover:shadow-md border border-blue-800 my-32">
+    class="rounded-3xl bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 
+   w-full items-center lg:w-3/12 m-auto xl:p-10 lg:p-8 relative flex justify-center  lg:flex-row hover:shadow-md  my-32">
     <div class="container">
       <div class="card">
         <div class="cardbody">
@@ -192,15 +193,15 @@
   </section>
 
   
-<footer class="p-4 bg-white rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
-    <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="#" class="hover:underline">Hafozh™</a>. All Rights Reserved.
-    </span>
-    <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
-        <li>
-            <a href="#home" class="hover:underline">Home</a>
-        </li>
-    </ul>
-</footer>
+  <footer class="p-4 bg-gray-800 rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800">
+      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="#" class="hover:underline">Hafozh™</a>. All Rights Reserved.
+      </span>
+      <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+          <li>
+              <a href="#home" class="hover:underline">Home</a>
+          </li>
+      </ul>
+  </footer>
         
 </div>
 </template>

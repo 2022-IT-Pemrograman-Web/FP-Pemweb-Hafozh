@@ -155,26 +155,21 @@ export const useApp = defineStore({
    
     },
 
-//     async editLink(linky, edit) {
-//       const id = linky.id 
-//           console.log(linky.id)
-//           await axios.post(URL_API + "linky/" + id, {
-//         alias: edit.alias,
-//         url: edit.url,
-//         code: edit.code,
-//         editState: false,
-//       })
-//       .then((result) => {
-//         console.log(result);
-//         // Reset form
-//         this.resetForm();
-//         // Refresh link list
-//         this.refreshList();
-//       }).catch((error) => {
-//         console.log(error);
-//       });
+    async editLink(linky, edit) {
+      const id = linky.id 
+      console.log(linky.id)
+          await axios.patch(URL_API + "linky/" + id, edit)
+      .then((result) => {
+        console.log(result);
+        // Reset form
+        this.resetForm();
+        // Refresh link list
+        this.refreshList();
+      }).catch((error) => {
+        console.log(error);
+      });
 
-// },
+},
     resetForm() {
       this.input.links.url = '';
       this.input.links.alias = '';

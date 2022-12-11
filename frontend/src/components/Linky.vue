@@ -1,13 +1,14 @@
 <template>
   <div class="w-full flex justify-center items-center ">
     <div
-      class="w-96 flex-2 rounded-xl bg-white p-5 my-2 lg:my-4 lg:mx-4 shadow-sm border hover:shadow-md hover:border-purple-600">
+      class="w-96 flex-2 rounded-3xl bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 
+ p-5 my-2 lg:my-4 lg:mx-4 shadow-sm  hover:shadow-md hover:border-purple-600 text-white">
       <h3 class="flex justify-center text-lg font-bold flex items-center">
         <button
           class="w-20 bg-gradient-to-r from-red-600 to-red-400 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded"
           @click="app.deleteLink(linky)">Delete</button>
         <button
-          class="w-20 bg-gradient-to-r from-red-600 to-red-400 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded"
+          class="w-20 bg-gradient-to-r from-blue-900 to-cyan-500 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded"
           v-if="!linky.editState" @click="linky.editState = !linky.editState">Edit</button>
 
         
@@ -20,7 +21,8 @@
         {{ linky.alias }}
       </h3>
       <div class="flex items-center flex justify-center">
-        <router-link class="text-blue-600 underline mr-4" :to="'/' + linky.code" target="_blank">
+        <router-link class="w-96 flex justify-center rounded-3xl bg-gray-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-10 
+ p-5 my-2 lg:my-4 lg:mx-4 shadow-sm  hover:shadow-md hover:border-purple-600 text-white" :to="'/' + linky.code" target="_blank">
           {{ currentHost }}/{{ linky.code }}</router-link>
         <!-- Copy Button -->
 
@@ -45,7 +47,7 @@
             <br>
             <button
               class="w-20 bg-gradient-to-r from-blue-600 to-blue-400 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded"
-              @click="(linky.editState = !linky.editState); app.editLink(linky)">Edit</button>
+              @click="(linky.editState = !linky.editState); app.editLink(linky, app.input.edit)">Edit</button>
             <button
               class="w-20 bg-gradient-to-r from-blue-600 to-blue-400 hover:bg-blue-700 text-white text-sm font-bold py-2 px-4 rounded"
               @click="linky.editState = !linky.editState">Cancel</button>
@@ -66,8 +68,10 @@ import { useApp } from "../stores/index.js";
       url: '',
       alias: '',
       code: '',
+      currentHost: window.location.host
     }
   },
+ 
     name: 'Linky',
     props: {
       linky: Object
@@ -78,12 +82,8 @@ import { useApp } from "../stores/index.js";
       app
     };
   },
-    data() {
-      return {
-        currentHost: window.location.host
-      }
-    },
-  
+ 
+
    
   
   }

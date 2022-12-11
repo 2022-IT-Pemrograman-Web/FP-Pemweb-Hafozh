@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen backdrop-blur-3xl flex">
+    <div class="h-screen backdrop-blur-3xl flex from-gray-800  to-cyan-800  bg-gradient-to-r">
         <div
             class="rounded-lg bg-transparent w-full items-center lg:w-3/12 m-auto xl:p-10 lg:p-8 relative flex justify-center  lg:flex-row  ">
             <div class="container">
