@@ -1,6 +1,7 @@
 import { db, auth } from './config/firebase.js';
 import admin from './config/firebase-service-account.config.js';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { collection, onSnapshot, doc, updateDoc, increment} from "firebase/firestore";
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -130,6 +131,7 @@ app.get("/dashboard", (req, res) => {
         url: url,
         code: code,
         editState: false,
+        hitung: 0
       })
     
       res.send( alias, url, code);
@@ -174,6 +176,25 @@ app.patch('/linky/:id', (req, res) => {
           url: req.body.url,
           code: req.body.code,
           editState: false,
+          hitung : 0
+        })
+        .then(() => {
+      console.log("aman")
+        })
+    } catch (error) {
+      res.send({
+        status: false,
+        message: "Failed to update link",
+      });
+    }
+  });
+
+  app.patch('/linky/:id', (req, res) => {
+    try {
+      db.collection("urls")
+        .doc(req.params.id)
+        .update({
+          hitung: req.body.firebase.firestore.FieldValue.increment(1)
         })
         .then(() => {
       console.log("aman")
