@@ -179,15 +179,30 @@ export const useApp = defineStore({
       this.input.edit.alias = '';
       this.input.edit.code = '';
     },
-      async increment(linky){
-        
-        const linkis = doc(db, "urls", linky.id);
 
-// Atomically increment the population of the city by 50.
-await updateDoc(linkis, {
-    'hitung' : increment(1)
-});
-    },
+    async increment(linky) {
+      const id = linky.id 
+      console.log(linky.id)
+          await axios.patch(URL_API + "linky/" + id)
+          .then((result) => {
+            console.log(result);
+            // Reset form
+            this.resetForm();
+            // Refresh link list
+            this.refreshList();
+          }).catch((error) => {
+            console.log(error);
+          });
+
+},
+      
+  //   async increment(linky){
+        
+  //       const linkis = doc(db, "urls", linky.id);
+  //       await updateDoc(linkis, {
+  //        'hitung' : increment(1)
+  // });
+  //   },
     redirect(){
       db.collection('urls').where('code', '==', this.$route.params.code).onSnapshot((linky) => {
       if(linky.empty){
